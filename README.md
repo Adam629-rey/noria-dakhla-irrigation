@@ -25,6 +25,16 @@ streamlit run app.py
 
 Cette version Python reste disponible comme variante de démonstration ; elle fonctionne hors ligne après installation des dépendances.
 
+## Démo en 90 secondes
+
+1. Garder les 3 parcelles simulées et le quota de 105 000 m³.
+2. Montrer les entrées éditables (culture, surface, âge, rendement et prix hypothétiques).
+3. Comparer la barre NORIA au partage uniforme et expliquer le plancher d'équité de 50 % lorsque le quota le permet.
+4. Charger l'historique local 2021–2025, puis actualiser la prévision 7 jours si le réseau est disponible. Changer le scénario ET₀ de « Prudent » à « Chaud » et ouvrir la sensibilité.
+5. Montrer la dose des 7 jours et ouvrir « Pourquoi NORIA propose cette répartition ? » pour expliquer les arbitrages parcelle par parcelle.
+6. Montrer « Mesure du pilote » : erreurs météo vs station, écart entre volume recommandé et observé, temps de préparation et facilité d’usage. Les mesures saisies sont locales au navigateur et ne constituent pas encore des résultats de terrain.
+7. Ouvrir « Méthode, sources et limites ».
+
 ## Décision mathématique
 
 - ETc journalière = Kc × ET₀ (FAO-56), avec Kc interpolé au fil des stades.
@@ -47,5 +57,3 @@ Avant un essai terrain : confronter la réanalyse à une station locale, valider
 - `SOURCES.md` — références agronomiques et événement
 - `PITCH.md` — pitch de 3 minutes, trame de slides et réponses au jury
 - `requirements.txt` — dépendances Python
-# noria-dakhla-irrigation
-NORIA — conseiller d’irrigation explicable pour répartir un quota d’eau entre parcelles à Dakhla. Lauréat du prix du meilleur projet du thème Environnement.

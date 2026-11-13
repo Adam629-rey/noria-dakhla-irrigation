@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#10234b" />
+  <meta name="description" content="NORIA transforme un quota d'eau limité en décisions d'irrigation lisibles pour Dakhla." />
+  <title>NORIA · Irrigation de précision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="NORIA, accueil">
+        <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4C15 12 8 19 8 25a12 12 0 0 0 24 0c0-6-7-13-12-21Z"/><path d="M13 27c1 4 4 6 8 6"/></svg></span>
+        <span><strong>NORIA</strong><small>EAU · CULTURE · DAKHLA</small></span>
+      </a>
+      <div class="side-label">ESPACE GESTIONNAIRE</div>
+      <nav class="side-nav" aria-label="Navigation principale">
+        <a class="nav-link active" href="#overview"><span class="nav-icon">◫</span>Vue d’ensemble</a>
+        <a class="nav-link" href="#parcels"><span class="nav-icon">▦</span>Parcelles <span class="nav-count">03</span></a>
+        <a class="nav-link" href="#allocation"><span class="nav-icon">↗</span>Répartition</a>
+        <a class="nav-link" href="#forecast"><span class="nav-icon">☼</span>Météo & besoins</a>
+      </nav>
+      <div class="side-spacer"></div>
+      <div class="quota-card">
+        <div class="quota-card-top"><span>QUOTA DU PÉRIMÈTRE</span><span class="live-dot"></span></div>
+        <div class="quota-big" id="sideQuota">105 000 <small>m³</small></div>
+        <div class="quota-track"><span id="quotaProgress"></span></div>
+        <div class="quota-foot"><span id="quotaUsedLabel">98 % mobilisé</span><span>Cette saison</span></div>
+      </div>
+      <div class="profile">
+        <div class="avatar">GP</div>
+        <div><strong>Gestionnaire</strong><small>Périmètre irrigué</small></div>
+        <span class="profile-menu">···</span>
+      </div>
+      <div class="sidebar-foot">DÉMONSTRATEUR ENSA–ENTA <span>v1.0</span></div>
+    </aside>
+
+    <main id="top" class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Opérations</span><b>/</b><strong>Vue d’ensemble</strong></div>
+        <div class="top-actions">
+          <span class="offline-chip"><i></i><span id="weatherStatus">Mode démo · hors ligne</span></span>
+          <button class="icon-button" id="refreshWeather" title="Actualiser la météo" aria-label="Actualiser la météo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.5 9a7 7 0 0 1 12-2l2.5 5M4 12l2.5 5a7 7 0 0 0 12-2"/></svg></button>
+          <button class="avatar top-avatar" aria-label="Profil gestionnaire">GP</button>
+        </div>
+      </header>
+
+      <section id="overview" class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span>GESTION INTELLIGENTE DE L’EAU · PROVINCES DU SUD</div>
+          <h1>Chaque goutte<br/><em>a une mission.</em></h1>
+          <p>NORIA transforme un quota limité en décisions d’irrigation lisibles : besoin des cultures, arbitrage entre parcelles, impact et incertitude.</p>
+          <div class="hero-meta"><span><i class="pin-icon">⌖</i> Dakhla · 23,7° N / 15,9° O</span><span class="meta-divider"></span><span>Jeudi 12 novembre 2026</span></div>
+        </div>
+        <div class="hero-art">
+          <div class="sun"></div><div class="horizon-glow"></div>
+          <div class="field field-back"></div><div class="field field-mid"></div><div class="field field-front"></div>
+          <div class="water-ribbon ribbon-one"></div><div class="water-ribbon ribbon-two"></div>
+          <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+          <div class="hero-stat"><span class="stat-icon">↘</span><span><b>30 M m³</b><small>pour l’irrigation / an*</small></span></div>
+          <div class="hero-stamp"><b>5 000</b><small>hectares</small></div>
+        </div>
+        <div class="hero-bottom"><span>FAO-56 · FAO-33</span><span class="hero-bottom-sep"></span><span>Conseil explicable, décision humaine</span><span class="hero-badge"><i></i> DÉMO PARCELLES SIMULÉES</span></div>
+      </section>
+      <p class="source-note">*Ordres de grandeur cités dans le dossier de projet du hackathon, à revalider auprès des sources institutionnelles.</p>
+
+
+      <section class="decision-context" aria-label="Rôle de NORIA et décision accompagnée">
+        <div class="context-heading"><span class="context-icon">⌖</span><div><strong>À qui sert NORIA ?</strong><small>Un outil d’aide à la décision pour gérer l’eau à l’échelle du périmètre.</small></div><span class="context-tag">DÉCISION HUMAINE</span></div>
+        <div class="context-grid">
+          <div><small>DÉCIDEUR PRINCIPAL</small><b>Gestionnaire du périmètre / coopérative</b></div>
+          <div><small>QUESTION TRAITÉE</small><b>Comment répartir le quota entre les parcelles ?</b></div>
+          <div><small>RÔLE DE L’AGRICULTEUR</small><b>Renseigner et vérifier les données de sa parcelle</b></div>
+          <div><small>RÉSULTAT</small><b>Un plan comparé, expliqué et ajustable</b></div>
+        </div>
+        <p>Le gestionnaire arbitre la répartition ; l’agriculteur et le conseiller agronomique apportent les données et valident le plan. NORIA ne déclenche pas l’irrigation automatiquement.</p>
+      </section>
+
+      <section class="control-strip" aria-label="Réglages du scénario">
+        <div class="control-heading"><div class="control-icon">⌘</div><div><strong>Votre scénario</strong><small>Ajustez les paramètres du périmètre</small></div></div>
+        <div class="control-item quota-control"><label for="quotaInput">QUOTA DISPONIBLE</label><div class="input-wrap"><input id="quotaInput" type="number" min="500" max="500000" step="5000" value="105000"><span>m³</span></div></div>
+        <div class="control-item scenario-control"><label for="scenarioSelect">SCÉNARIO MÉTÉO</label><div class="select-wrap"><select id="scenarioSelect"><option value="0.85">Prudent · ET₀ −15 %</option><option value="1" selected>Nominal · ET₀ de base</option><option value="1.15">Chaud · ET₀ +15 %</option></select><span>⌄</span></div></div>
+        <div class="control-item efficiency-control"><label for="efficiencyInput">EFFICACITÉ GOUTTE-À-GOUTTE</label><div class="range-line"><input id="efficiencyInput" type="range" min="0.70" max="1" step="0.01" value="0.90"><strong id="efficiencyLabel">90 %</strong></div></div>
+        <button class="reset-button" id="resetButton" title="Réinitialiser le scénario">↺</button>
+      </section>
+
+      <section class="kpi-grid" aria-label="Indicateurs clés">
+        <article class="kpi-card"><div class="kpi-top"><span class="kpi-icon mint">◉</span><span class="kpi-trend neutral">BESOIN ESTIMÉ</span></div><div class="kpi-value" id="needMetric">— <small>m³</small></div><div class="kpi-label">Besoin du cycle restant</div><div class="kpi-foot"><span class="dot-label"></span>Coefficients culturaux FAO</div></article>
+        <article class="kpi-card"><div class="kpi-top"><span class="kpi-icon sky">◷</span><span class="kpi-trend green" id="quotaPct">— %</span></div><div class="kpi-value" id="allocatedMetric">— <small>m³</small></div><div class="kpi-label">Quota mobilisé</div><div class="kpi-foot">Enveloppe collective saisie</div></article>
+        <article class="kpi-card highlight-kpi"><div class="kpi-top"><span class="kpi-icon dark-icon">✳</span><span class="kpi-trend green-light" id="deltaMetric">— pt vs uniforme</span></div><div class="kpi-value" id="yieldMetric">— <small>%</small></div><div class="kpi-label">Rendement préservé · NORIA</div><div class="kpi-foot">Indicateur modélisé, non mesuré</div></article>
+        <article class="kpi-card"><div class="kpi-top"><span class="kpi-icon sand">◈</span><span class="kpi-trend neutral">HYPOTHÈSE</span></div><div class="kpi-value" id="valueMetric">— <small>M MAD</small></div><div class="kpi-label">Valeur protégée estimée</div><div class="kpi-foot">Potentiel théorique pondéré par Ky</div></article>
+      </section>
+
+      <section id="parcels" class="section-block">
+        <div class="section-head"><div><div class="section-kicker">01 / DONNÉES DU PÉRIMÈTRE</div><h2>Parcelles suivies <span class="head-count">03</span></h2></div><button class="text-button" id="restoreParcels">Réinitialiser les parcelles <span>↗</span></button></div>
+        <div class="table-card">
+          <div class="table-header"><div class="table-title"><span class="table-spark">✦</span>Configuration culturale <small>Modifiez les cellules pour simuler un autre périmètre</small></div><span class="table-tag"><i></i> 3 PARCELLES DÉMO</span></div>
+          <div class="table-scroll"><table class="parcel-table"><thead><tr><th>PARCELLE</th><th>CULTURE</th><th>SURFACE</th><th>PLANTATION / ÂGE</th><th>RENDEMENT POTENTIEL <sup>H</sup></th><th>PRIX INDICATIF <sup>H</sup></th><th>BESOIN ESTIMÉ</th></tr></thead><tbody id="parcelRows"></tbody></table></div>
+          <div class="table-footer"><span><b>H</b> Hypothèse de démonstration · les valeurs sont modifiables</span><span class="unit-note">1 mm sur 1 ha = 10 m³</span></div>
+        </div>
+      </section>
+
+      <section id="allocation" class="section-block">
+        <div class="section-head"><div><div class="section-kicker">02 / ARBITRAGE SOUS CONTRAINTE</div><h2>Une répartition qui protège la valeur</h2></div><div class="model-chip"><span>✧</span> OPTIMISATION LINÉAIRE · Ky × valeur parcelle</div></div>
+        <div class="analysis-grid">
+          <article class="chart-card">
+            <div class="card-heading"><div><h3>Comparaison des allocations</h3><p>Volume attribué à chaque parcelle selon la méthode</p></div><button class="more-button" aria-label="Informations sur le graphique">···</button></div>
+            <div class="legend"><span><i class="legend-dot teal"></i>NORIA · optimisé</span><span><i class="legend-dot gray"></i>Partage proportionnel</span></div>
+            <div id="allocationChart" class="allocation-chart" role="img" aria-label="Graphique comparant les allocations d'eau"></div>
+            <div class="chart-foot"><span><i class="foot-dot"></i>Le total reste borné au quota</span><span>VOLUME · m³</span></div>
+          </article>
+          <article class="allocation-card">
+            <div class="card-heading"><div><h3>Plan de répartition</h3><p>Recommandation pour le gestionnaire</p></div><span class="plan-icon">↗</span></div>
+            <div class="allocation-list" id="allocationList"></div>
+            <div class="fairness-note"><span class="fairness-icon">◎</span><p><strong>Garde-fou d’équité</strong>Plancher de 50 % du besoin par parcelle quand le quota le permet. Le partage proportionnel est le mode de secours.</p></div>
+            <div class="allocation-total"><span>EAU DISTRIBUÉE</span><strong id="allocatedTotal">— <small>m³</small></strong></div>
+          </article>
+        </div>
+
+        <article class="explain-card" aria-labelledby="explainTitle">
+          <div class="explain-heading"><div><h3 id="explainTitle">Pourquoi NORIA propose cette répartition ?</h3><p>Les raisons se recalculent à chaque changement de quota, météo ou parcelle.</p></div><span class="explain-badge" id="decisionBadge">Lecture du scénario</span></div>
+          <div class="explain-steps" id="explanationSteps"></div>
+          <div class="explain-parcels" id="explainParcels" aria-live="polite"></div>
+          <p class="explain-foot" id="allocationModeNote"></p>
+        </article>
+      </section>
+
+      <section id="forecast" class="section-block forecast-section">
+        <div class="section-head"><div><div class="section-kicker">03 / CLIMAT LOCAL & ANTICIPATION</div><h2>Météo saisonnière de Dakhla</h2></div><div class="forecast-meta"><span class="weather-icon">☼</span><span><b id="forecastSource">Simulation hors ligne</b><small>Dakhla · prévision journalière</small></span><button class="refresh-text" id="refreshWeatherText">7 jours ↻</button></div></div>
+        <article class="seasonality-card">
+          <div class="seasonality-heading"><div class="seasonality-title"><span class="seasonality-icon">⌁</span><span><b>Profil saisonnier local</b><small id="climatePeriod">Climatologie non chargée · mode démonstration</small></span><span class="era-badge" id="climateBadge">À ACTUALISER</span></div><button class="load-climate" id="loadClimate"><span>↓</span> Charger l’historique 2021–2025</button></div>
+          <div id="seasonalChart" class="seasonal-chart" role="img" aria-label="Profil mensuel de l'évapotranspiration et des précipitations à Dakhla"></div>
+          <div class="seasonality-footer"><span><i class="legend-dot teal"></i>ET₀ moyenne journalière</span><span><i class="legend-dot rain-dot"></i>Pluie moyenne journalière</span><span id="climateSummary" class="climate-summary">Données simulées · ET₀ de base 5,0 mm/j</span></div>
+        </article>
+        <div class="forecast-card"><div id="forecastDays" class="forecast-days"></div><div class="forecast-summary"><span>DOSE CUMULÉE · 7 JOURS</span><div id="weeklyTotals"></div></div></div>
+        <div class="uncertainty-banner"><span class="uncertainty-icon">⌁</span><span><strong>La météo varie, le plan s’adapte.</strong> La bande ±15 % montre la sensibilité à l’ET₀. Ce n’est pas un intervalle de confiance.</span><button id="showScenarios">Voir les 3 scénarios <b>＋</b></button></div>
+        <div id="scenarioPanel" class="scenario-panel hidden"><div class="scenario-panel-head"><div><b>Analyse de sensibilité</b><small>À quota constant · estimation du rendement préservé</small></div><button id="closeScenarios" aria-label="Fermer">×</button></div><div id="scenarioRows"></div></div>
+      </section>
+
+
+      <section id="pilot" class="section-block pilot-section">
+        <div class="section-head"><div><div class="section-kicker">04 / MESURE DU PILOTE</div><h2>Comment vérifier l’utilité de NORIA ?</h2></div><span class="pilot-tag">À RENSEIGNER EN CONDITIONS RÉELLES</span></div>
+        <p class="pilot-intro">Ces indicateurs servent à confronter les estimations aux observations. Ils ne sont pas des résultats de performance : les valeurs saisies restent enregistrées dans ce navigateur.</p>
+        <div class="pilot-grid">
+          <article class="pilot-card">
+            <div class="pilot-card-head"><span class="pilot-icon">☼</span><div><b>Météo comparée à une station</b><small>ET₀ prévue et pluie · jour 1</small></div></div>
+            <div class="pilot-fields"><label>ET₀ observée<input id="pilotEt0" type="number" min="0" max="20" step="0.1" placeholder="mm/j"></label><label>Pluie observée<input id="pilotRain" type="number" min="0" max="300" step="0.1" placeholder="mm/j"></label></div>
+            <div class="pilot-result" id="pilotWeatherError">Saisir les mesures d’une station locale.</div>
+          </article>
+          <article class="pilot-card">
+            <div class="pilot-card-head"><span class="pilot-icon">◉</span><div><b>Recommandation et terrain</b><small>Comparer le même cycle et les mêmes parcelles</small></div></div>
+            <label class="pilot-single">Volume réellement distribué<input id="pilotVolume" type="number" min="0" step="100" placeholder="m³ sur le cycle"></label>
+            <div class="pilot-result" id="pilotVolumeGap">À renseigner après le cycle.</div>
+          </article>
+          <article class="pilot-card">
+            <div class="pilot-card-head"><span class="pilot-icon">◷</span><div><b>Temps de préparation</b><small>Du début de saisie au plan prêt à examiner</small></div></div>
+            <label class="pilot-single">Durée observée<input id="pilotMinutes" type="number" min="0" max="600" step="1" placeholder="minutes"></label>
+            <div class="pilot-result" id="pilotTimeResult">À mesurer lors de chaque préparation.</div>
+          </article>
+          <article class="pilot-card">
+            <div class="pilot-card-head"><span class="pilot-icon">☆</span><div><b>Facilité d’utilisation</b><small>Retour du gestionnaire ou de l’agriculteur</small></div></div>
+            <label class="pilot-single">Note déclarée<select id="pilotEase"><option value="1">1 · Très difficile</option><option value="2">2 · Difficile</option><option value="3" selected>3 · Moyenne</option><option value="4">4 · Facile</option><option value="5">5 · Très facile</option></select></label>
+            <div class="pilot-result" id="pilotEaseResult">Évaluation à recueillir après usage.</div>
+          </article>
+        </div>
+        <div class="pilot-foot">Pour un bilan sérieux : répéter ces relevés sur plusieurs décisions, confronter la météo aux mesures de station et discuter les écarts avec un agronome.</div>
+      </section>
+
+      <section class="method-note"><span class="method-icon">i</span><div><strong>Démonstrateur : parcelles simulées</strong><p>Les parcelles, la météo saisonnière, les rendements et les prix sont des hypothèses. Les coefficients FAO sont des références à calibrer localement. NORIA conseille ; le gestionnaire décide.</p></div><button id="methodToggle">Méthode & limites <span>⌄</span></button></section>
+      <div id="methodDetails" class="method-details hidden"><div><b>Kc vérifiés · FAO-56</b><p>Tomate : 0,60 → 1,15 → 0,70–0,90 (valeur centrale 0,80 dans la démo). Pastèque : 0,40 → 1,00 → 0,75. Les Kc mi-saison et fin sont ajustés selon la climatologie locale avec les équations FAO si l'historique est chargé.</p></div><div><b>Ky vérifiés · FAO-33</b><p>Ky saisonnier : tomate 1,05 ; pastèque 1,10. Relation linéaire entre déficit relatif d'évapotranspiration et baisse relative de rendement. Cela reste une approximation agrégée.</p></div><div><b>Limites agronomiques</b><p>Les durées de cycle et le Kc initial restent indicatifs ; la serre, le sol, la variété, l'humectation et les pratiques doivent être validés localement. Les données de réanalyse ne remplacent pas une station au champ.</p></div></div>
+      <footer class="page-footer"><span><b>NORIA</b> · Une boussole pour une ressource rare.</span><span>ENSA MARRAKECH × ENTA LAÂYOUNE × ENTA DAKHLA</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
