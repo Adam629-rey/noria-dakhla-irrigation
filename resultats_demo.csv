@@ -1,0 +1,7 @@
+﻿scenario,methode,quota_m3,besoin_m3,alloue_m3,valeur_preservee_mad,perte_mad,statut,source
+ET0 -15%,proportionnel,9200,10373.401622999998,9200.0,648435.72735018,77564.27264981999,Partage proportionnel,simulation
+ET0 -15%,linprog,9200,10373.401622999998,9200.0,682978.9464151585,43021.053584841575,Optimisation linprog réussie,simulation
+Nominal,proportionnel,9200,12238.511713333331,9200.0,555373.8221573868,170626.1778426132,Partage proportionnel,simulation
+Nominal,linprog,9200,12238.511713333331,9200.0,602461.3842896651,123538.61571033485,Optimisation linprog réussie,simulation
+ET0 +15%,proportionnel,9200,14103.621803666665,9200.0,486657.1378778736,239342.86212212642,Partage proportionnel,simulation
+ET0 +15%,linprog,9200,14103.621803666665,9200.0,533877.0446899816,192122.95531001838,Optimisation linprog réussie,simulation

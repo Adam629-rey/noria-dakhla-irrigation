@@ -1,0 +1,4 @@
+id,culture,surface_ha,plantation,milieu,ky,rendement_t_ha,prix_mad_kg
+P1,Tomate,1.2,2026-09-01,Plein champ,1.0,60,4
+P2,Melon,1.0,2026-09-08,Plein champ,0.8,30,5
+P3,Tomate,0.8,2026-09-15,Serre,1.0,80,4.5
